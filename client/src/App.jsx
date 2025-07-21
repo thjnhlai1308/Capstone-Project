@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, Router } from 'react-router-dom';
+import HomePage from './components/Homepage';
+import './components/style.css'
 
 
 function App() {
-  
-
   return (
-    <div>
-      <h1>Start of your template!</h1>
-    </div>
+    <Routes>
+        <Route path='/' element={<HomePage />} />
+    </Routes>
   )
 }
 
