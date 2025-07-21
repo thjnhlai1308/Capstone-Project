@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, Route, Routes, Router, useNavigate, useLocation } from 'react-router-dom';
 import HomePage from './components/Homepage';
 import Navbar from './components/Navbar';
+import Login from './components/Login';
 import './components/style.css'
 
 
