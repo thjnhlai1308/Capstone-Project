@@ -1,3 +1,11 @@
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+    max-width: 1200vh;
+}
+
 .homepage-container {
     display: flex;
     flex-direction: column;
@@ -69,3 +77,54 @@ p {
 .nav-links a:hover {
     color: #f5a623;
 }
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-form {
+    background-color: #fff;
+    padding: 2rem 3rem;
+    border-radius: 16px;
+    box-shadow: 0 0 20px black;
+    width: 100%;
+    max-width: 500px;
+}
+
+.login-form h1 {
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #222;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.login-form button:hover {
+    background-color: #444;
+  }
+  
+  .error {
+    color: #d33;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }

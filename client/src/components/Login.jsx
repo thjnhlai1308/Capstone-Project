@@ -31,9 +31,9 @@ const Login = ({attemptLoginWithToken}) => {
         }
     }
     return (
-        <div>
+        <div className="login-container">
+            <form className="login-form" action={login}>
             <h1>Login</h1>
-            <form action={login}>
                 <label>
                     Username:
                     <input type="text" name="username" required />
