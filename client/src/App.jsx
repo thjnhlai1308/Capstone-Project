@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Link, Route, Routes, Router, useNavigate, useLocation } from 'react-router-dom';
+import './components/style.css'
+
 import HomePage from './components/Homepage';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
-import './components/style.css'
+import AboutMe from './components/Aboutme';
+
 
 
 function App() {
@@ -67,6 +70,11 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='login' element={<Login attemptLoginWithToken={attemptLoginWithToken} />} />
+        <Route 
+          path='aboutme' 
+          element={user.id ? (
+          <AboutMe user={user} favorites={favorites} shoes={shoes} getHeaders={getHeaders} setFavorites={setFavorites} /> ) : (
+          <Login attemptLoginWithToken={attemptLoginWithToken} />)} />
       </Routes>
     </>
   )
