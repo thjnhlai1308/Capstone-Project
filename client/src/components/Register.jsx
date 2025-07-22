@@ -2,38 +2,35 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const Login = ({attemptLoginWithToken}) => {
+
+const Register = () => {
     const navigate = useNavigate()
     const [error, setError] = useState('')
 
-    const login = async (formdata) => {
-        const username = formdata.get('username')
-        const password = formdata.get('password')
+    const register = async (formData) => {
+        const username = formData.get('username')
+        const password = formData.get('password')
 
         const user = {
             username,
             password
         }
-
         try {
-            const {data} = await axios.post('/api/auth/login', user)
-            const {token} = data
-            window.localStorage.setItem('token', token)
-            attemptLoginWithToken()
+            const {data} = await axios.post('/api/users/register', user)
+            alert('Registration successful! Thank you.')
             navigate('/')
         } catch (error) {
-            console.error(error)
-            if(error.status === 401) {
-                setError('incorrect credentials')
+            if (error.response?.status == 500) {
+                setError('Invalid username or password')
             } else {
-                setError(error.message)
+                setError(err.message)
             }
         }
     }
     return (
-        <div className="login-container">
-            <h1>Login</h1>
-            <form className="login-form" action={login}>
+        <div className="register-container">
+            <h1>Register</h1>
+            <form action={register}>
                 <label>
                     Username:
                     <input type="text" name="username" required />
@@ -44,7 +41,12 @@ const Login = ({attemptLoginWithToken}) => {
                     <input type="password" name="password" required />
                 </label>
                 <br />
-                <button type="submit">Login</button>
+                <label>
+                    Email:
+                    <input type="email" name="email" required />
+                </label>
+                <br />
+                <button type="submit">Register</button>
             </form>
             <hr />
             {error && <h2 style={{color: 'red'}}>{error}</h2>}
@@ -52,4 +54,4 @@ const Login = ({attemptLoginWithToken}) => {
     )
 }
 
-export default Login
+export default Register
