@@ -6,6 +6,8 @@ import HomePage from './components/Homepage';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
 import AboutMe from './components/Aboutme';
+import Register from './components/Register';
+import Closet from './components/Closet';
 
 
 
@@ -70,6 +72,8 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='login' element={<Login attemptLoginWithToken={attemptLoginWithToken} />} />
+        <Route path='register' element={<Register />} />
+        <Route path="/closet" element={<Closet user={user} getHeaders={getHeaders} />} />
         <Route 
           path='aboutme' 
           element={user.id ? (

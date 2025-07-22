@@ -1,40 +1,32 @@
 import axios from "axios";
 import './style.css';
 
-const AboutMe = ({user, favorites, shoes, getHeaders, setFavorites}) => {
-    const removeFav = async (favId) => {
-        try {
-            await axios.delete(`/api/favorites/${favId}/user/${user.id}`, getHeaders())
-            setFavorites(favorites.filter((fav) => fav.id !== favId))
-        } catch (error) {
-            console.log(error)
-        }
+const AboutMe = ({user}) => {
+    if (!user.id) {
+        return (
+            <div className="aboutme-container">
+                <h2>Please log in to view your profile.</h2>
+            </div>
+        )
     }
 
     return (
-        <div className="about-container">
-            <h3>User Info</h3>
-            <hr />
-            <h4>User ID: <span>{user.id}</span></h4>
-            <h4>Username: <span>{user.username}</span></h4>
+        <div className="aboutme-container">
+            <h2>Welcome, {user.username}!</h2>
+            <p>Email: {user.email}</p>
+            <p>Joined: {new Date(user.created_at).toLocaleDateString()}</p>
 
-            <h4>Favorite Shoes</h4>
-            <ul className="favorites-list">
-                {favorites.length ? (
-                    favorites.map((fav) => {
-                        const favShoe = shoes.find((shoe) => fav.product_id === shoe.id)
-                        return (
-                            <li key={fav.id} className="favorite-item">
-                                <span>{favShoe?.name || 'Unknown Shoe'}</span>
-                                <button className="remove-btn" onClick={() => removeFav(fav.id)}>
-                                    Remove
-                                </button>
-                            </li>
-                        )
-                    })
-                ) : (
-                    <p>Your closet’s looking empty—no favorite kicks yet!</p>
-                )}
+            {user.is_admin && (
+                <p><strong>Adminm Account</strong></p>
+            )}
+
+            <hr />
+
+            <h3>Your Shoe Stats</h3>
+            <ul>
+                <li>Closet Size: {user.shoe_count || 'N/A'}</li>
+                <li>Favorites: {user.favorite_count || 'N/A'}</li>
+                <li>Comparsion Made: {user.comparsion_count || 0}</li>
             </ul>
         </div>
     )
